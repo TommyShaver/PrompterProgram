@@ -4,18 +4,18 @@ using TMPro;
 
 public class TextUITransform: MonoBehaviour
 {
-    
+    [SerializeField] TextSpeedWarning textSpeedWarning;
     [SerializeField] private int textSpeed;
     [SerializeField] private float scrollSpeed = 0.1f;
-    private bool isHovering;
     private bool textStartMoving;
+    public TextMeshProUGUI scrollingText;
 
     private void Start()
     {
         Debug.Log("TextUITrasform Start: " + textStartMoving);
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         float scrollInput = Input.GetAxis("Mouse ScrollWheel");
 
@@ -64,6 +64,8 @@ public class TextUITransform: MonoBehaviour
             if(textSpeed <= 0)
             {
                 textSpeed = 0;
+                //This send a message to TextSpeedWarning.
+                textSpeedWarning.StartShowingMessage();
             }
         }
     }
