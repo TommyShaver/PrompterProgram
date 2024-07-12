@@ -17,7 +17,6 @@ public class ScrollTextInput : MonoBehaviour, IPointerEnterHandler, IPointerExit
         float scrollInput = Input.GetAxis("Mouse ScrollWheel");
         if(isHovering)
         {
-            Debug.Log("ScrollTextInput: Text Box Selected");
             if (scrollInput != 0)
             {
                 // Apply movement to the game object along the Y-axis

@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using TMPro;
+using System.Collections;
 
 public class TextUITransform: MonoBehaviour
 {
@@ -8,11 +9,20 @@ public class TextUITransform: MonoBehaviour
     [SerializeField] private int textSpeed;
     [SerializeField] private float scrollSpeed = 0.1f;
     private bool textStartMoving;
-    public TextMeshProUGUI scrollingText;
+    
 
+    public TMP_InputField textInput;
+    public TextMeshProUGUI textOutput;
+    private Vector3 startingPostion;
+
+
+    //Unity funtion =================================================================================
     private void Start()
     {
-        Debug.Log("TextUITrasform Start: " + textStartMoving);
+        startingPostion = transform.position;
+        //transform.position = new Vector3(0, startPostion, 0);
+        Debug.Log(transform.position);
+        Debug.Log(startingPostion);
     }
 
     private void LateUpdate()
@@ -28,7 +38,16 @@ public class TextUITransform: MonoBehaviour
         TextMovement();
     }
 
+    //Text Setup =====================================================================================
+    public void SetTextToOutput()
+    {
+        textOutput.text = textInput.text;
+    }
+
     
+
+    //Text Logic =====================================================================================
+    //Input Manager controls these scripts -----------------------------------------------------------
     private void TextMovement()
     {
         //Logic behind text moving.
@@ -69,4 +88,19 @@ public class TextUITransform: MonoBehaviour
             }
         }
     }
+
+    public void ReturnTransformToStart()
+    {
+        transform.position = startingPostion;
+    }
+
+    IEnumerator TypeLine(string s)
+    {
+        foreach (char c in s.ToCharArray())
+        {
+            //_textComponent.text += c;
+            yield return new WaitForSeconds(1);
+        }
+    }
+
 }
