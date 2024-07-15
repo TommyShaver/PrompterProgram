@@ -14,13 +14,17 @@ public class TextUITransform: MonoBehaviour
     public TMP_InputField textInput;
     public TextMeshProUGUI textOutput;
     private Vector3 startingPostion;
+    private string switchFromInputl;
 
+    private void Awake()
+    {
+        textOutput.GetComponent<TextMeshProUGUI>();   
+    }
 
     //Unity funtion =================================================================================
     private void Start()
     {
         startingPostion = transform.position;
-        //transform.position = new Vector3(0, startPostion, 0);
         Debug.Log(transform.position);
         Debug.Log(startingPostion);
     }
@@ -41,7 +45,9 @@ public class TextUITransform: MonoBehaviour
     //Text Setup =====================================================================================
     public void SetTextToOutput()
     {
-        textOutput.text = textInput.text;
+        switchFromInputl = textInput.text;
+        StartCoroutine(TypeLine(switchFromInputl));
+        Debug.Log(switchFromInputl);
     }
 
     
@@ -96,10 +102,11 @@ public class TextUITransform: MonoBehaviour
 
     IEnumerator TypeLine(string s)
     {
+        textOutput.text = " ";
         foreach (char c in s.ToCharArray())
         {
-            //_textComponent.text += c;
-            yield return new WaitForSeconds(1);
+            textOutput.text += c;
+            yield return new WaitForSeconds(.000001f);
         }
     }
 
