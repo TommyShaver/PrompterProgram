@@ -9,13 +9,11 @@ public class TextUITransform: MonoBehaviour
     [SerializeField] private int textSpeed;
     [SerializeField] private float scrollSpeed = 0.1f;
     private bool textStartMoving;
-    
+    private Vector3 startingPostion;
 
     public TMP_InputField textInput;
     public TextMeshProUGUI textOutput;
-    private Vector3 startingPostion;
-    private string switchFromInput;
-
+   
     private void Awake()
     {
         textOutput.GetComponent<TextMeshProUGUI>();   
@@ -43,13 +41,7 @@ public class TextUITransform: MonoBehaviour
     //Text Setup =====================================================================================
     public void SetTextToOutput()
     {
-        switchFromInput = textInput.text;
-        textOutput.text = " ";
-        foreach (char c in switchFromInput)
-        {
-            textOutput.text += c;
-            
-        }
+        textOutput.text = textInput.text;  
     }
 
     
