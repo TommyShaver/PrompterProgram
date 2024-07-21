@@ -48,6 +48,11 @@ public class InputManager : MonoBehaviour
                 Debug.Log("Input Manager: R Was Hit");
                 textUITransform.ReturnTransformToStart();
             }
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                Debug.Log("Input Manager: S Was Hit");
+                textUITransform.StopMovement();
+            }
         }
     }
     public void IncomingData(bool switchState)
